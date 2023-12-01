@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use NextDeveloper\Commons\Database\Traits\Filterable;
 use NextDeveloper\Golf\Database\Observers\ReservationsObserver;
 use NextDeveloper\Commons\Database\Traits\UuidId;
+use NextDeveloper\Commons\Common\Cache\Traits\CleanCache;
 
 /**
  * Class Reservations.
@@ -16,7 +17,7 @@ use NextDeveloper\Commons\Database\Traits\UuidId;
  */
 class Reservations extends Model
 {
-    use Filterable, UuidId;
+    use Filterable, UuidId, CleanCache;
     use SoftDeletes;
 
 
@@ -55,7 +56,6 @@ class Reservations extends Model
     'golf_tee_time_id' => 'integer',
     'golf_club_id'     => 'integer',
     'golf_course_id'   => 'integer',
-    'iam_user_id'      => 'integer',
     'created_at'       => 'datetime',
     'updated_at'       => 'datetime',
     'deleted_at'       => 'datetime',
@@ -134,5 +134,6 @@ class Reservations extends Model
         return $this->belongsTo(\NextDeveloper\Stay\Database\Models\Hotels::class);
     }
     
-    // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE
+    // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n
+
 }

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use NextDeveloper\Commons\Database\Traits\Filterable;
 use NextDeveloper\Golf\Database\Observers\ClubsObserver;
 use NextDeveloper\Commons\Database\Traits\UuidId;
+use NextDeveloper\Commons\Common\Cache\Traits\CleanCache;
 
 /**
  * Class Clubs.
@@ -16,7 +17,7 @@ use NextDeveloper\Commons\Database\Traits\UuidId;
  */
 class Clubs extends Model
 {
-    use Filterable, UuidId;
+    use Filterable, UuidId, CleanCache;
     use SoftDeletes;
 
 
@@ -52,8 +53,6 @@ class Clubs extends Model
     protected $casts = [
     'id'             => 'integer',
     'uuid'           => 'string',
-    'iam_account_id' => 'integer',
-    'iam_user_id'    => 'integer',
     'name'           => 'string',
     'description'    => 'string',
     'address'        => 'string',
@@ -146,5 +145,6 @@ class Clubs extends Model
         return $this->hasMany(\NextDeveloper\Golf\Database\Models\TeeTimes::class);
     }
 
-    // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n
+    // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n\n\n
+
 }

@@ -121,7 +121,7 @@ class AbstractTeeTimesService
                 $data['golf_course_id']
             );
         }
-            
+    
         try {
             $model = TeeTimes::create($data);
         } catch(\Exception $e) {
@@ -199,7 +199,7 @@ class AbstractTeeTimesService
      * @return mixed
      * @throw  Exception
      */
-    public static function delete($id, array $data)
+    public static function delete($id)
     {
         $model = TeeTimes::where('uuid', $id)->first();
 
@@ -210,8 +210,6 @@ class AbstractTeeTimesService
         } catch(\Exception $e) {
             throw $e;
         }
-
-        event(new TeeTimesDeletedEvent($model));
 
         return $model;
     }

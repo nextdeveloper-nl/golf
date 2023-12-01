@@ -133,7 +133,7 @@ class AbstractReservationsService
                 $data['iam_user_id']
             );
         }
-            
+    
         try {
             $model = Reservations::create($data);
         } catch(\Exception $e) {
@@ -223,7 +223,7 @@ class AbstractReservationsService
      * @return mixed
      * @throw  Exception
      */
-    public static function delete($id, array $data)
+    public static function delete($id)
     {
         $model = Reservations::where('uuid', $id)->first();
 
@@ -234,8 +234,6 @@ class AbstractReservationsService
         } catch(\Exception $e) {
             throw $e;
         }
-
-        event(new ReservationsDeletedEvent($model));
 
         return $model;
     }

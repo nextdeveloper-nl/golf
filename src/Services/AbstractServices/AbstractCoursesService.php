@@ -121,7 +121,7 @@ class AbstractCoursesService
                 $data['common_currency_id']
             );
         }
-            
+    
         try {
             $model = Courses::create($data);
         } catch(\Exception $e) {
@@ -199,7 +199,7 @@ class AbstractCoursesService
      * @return mixed
      * @throw  Exception
      */
-    public static function delete($id, array $data)
+    public static function delete($id)
     {
         $model = Courses::where('uuid', $id)->first();
 
@@ -210,8 +210,6 @@ class AbstractCoursesService
         } catch(\Exception $e) {
             throw $e;
         }
-
-        event(new CoursesDeletedEvent($model));
 
         return $model;
     }

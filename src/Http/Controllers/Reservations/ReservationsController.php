@@ -86,7 +86,7 @@ class ReservationsController extends AbstractController
     {
         $model = ReservationsService::delete($reservationsId);
 
-        return ResponsableFactory::makeResponse($this, $model);
+        return $this->noContent();
     }
 
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE

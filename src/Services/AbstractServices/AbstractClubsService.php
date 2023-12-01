@@ -121,7 +121,7 @@ class AbstractClubsService
                 $data['iam_user_id']
             );
         }
-            
+    
         try {
             $model = Clubs::create($data);
         } catch(\Exception $e) {
@@ -199,7 +199,7 @@ class AbstractClubsService
      * @return mixed
      * @throw  Exception
      */
-    public static function delete($id, array $data)
+    public static function delete($id)
     {
         $model = Clubs::where('uuid', $id)->first();
 
@@ -210,8 +210,6 @@ class AbstractClubsService
         } catch(\Exception $e) {
             throw $e;
         }
-
-        event(new ClubsDeletedEvent($model));
 
         return $model;
     }
