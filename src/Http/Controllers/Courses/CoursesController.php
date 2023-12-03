@@ -46,6 +46,20 @@ class CoursesController extends AbstractController
     }
 
     /**
+     * This method returns the list of sub objects the related object.
+     *
+     * @param  $ref
+     * @param  $subObject
+     * @return void
+     */
+    public function subObjects($ref, $subObject)
+    {
+        $objects = CoursesService::getSubObjects($ref, $subObject);
+
+        return ResponsableFactory::makeResponse($this, $objects);
+    }
+
+    /**
      * This method created Courses object on database.
      *
      * @param  CoursesCreateRequest $request
