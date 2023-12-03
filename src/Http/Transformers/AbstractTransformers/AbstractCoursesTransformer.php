@@ -22,7 +22,7 @@ class AbstractCoursesTransformer extends AbstractTransformer
     {
                         $golfClubId = \NextDeveloper\Golf\Database\Models\Clubs::where('id', $model->golf_club_id)->first();
                     $commonCurrencyId = \NextDeveloper\Commons\Database\Models\Currencies::where('id', $model->common_currency_id)->first();
-            
+        
         return $this->buildPayload(
             [
             'id'  =>  $model->uuid,
@@ -32,12 +32,13 @@ class AbstractCoursesTransformer extends AbstractTransformer
             'facilities'  =>  $model->facilities,
             'price'  =>  $model->price,
             'common_currency_id'  =>  $commonCurrencyId ? $commonCurrencyId->uuid : null,
-            'created_at'  =>  $model->created_at,
-            'updated_at'  =>  $model->updated_at,
-            'deleted_at'  =>  $model->deleted_at,
+            'created_at'  =>  $model->created_at ? $model->created_at->toIso8601String() : null,
+            'updated_at'  =>  $model->updated_at ? $model->updated_at->toIso8601String() : null,
+            'deleted_at'  =>  $model->deleted_at ? $model->deleted_at->toIso8601String() : null,
             ]
         );
     }
-    
-    // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE
+
+    // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n
+
 }

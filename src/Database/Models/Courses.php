@@ -9,6 +9,7 @@ use NextDeveloper\Commons\Database\Traits\Filterable;
 use NextDeveloper\Golf\Database\Observers\CoursesObserver;
 use NextDeveloper\Commons\Database\Traits\UuidId;
 use NextDeveloper\Commons\Common\Cache\Traits\CleanCache;
+use NextDeveloper\Commons\Database\Traits\Taggable;
 
 /**
  * Class Courses.
@@ -17,7 +18,7 @@ use NextDeveloper\Commons\Common\Cache\Traits\CleanCache;
  */
 class Courses extends Model
 {
-    use Filterable, UuidId, CleanCache;
+    use Filterable, UuidId, CleanCache, Taggable;
     use SoftDeletes;
 
 
@@ -141,6 +142,7 @@ class Courses extends Model
         return $this->hasMany(\NextDeveloper\Golf\Database\Models\TeeTimes::class);
     }
 
-    // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n
+    // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n\n\n
+
 
 }

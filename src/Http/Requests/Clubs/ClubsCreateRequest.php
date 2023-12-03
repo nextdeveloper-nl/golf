@@ -20,5 +20,5 @@ class ClubsCreateRequest extends AbstractFormRequest
         'city'           => 'nullable|string|max:50',
         ];
     }
-    // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE
+    // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n
 }

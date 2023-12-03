@@ -5,6 +5,7 @@ Route::prefix('golf')->group(function () {
         function () {
             Route::get('/', 'Clubs\ClubsController@index');
             Route::get('/{golf_clubs}', 'Clubs\ClubsController@show');
+            Route::get('/{golf_clubs}/{subObjects}', 'Clubs\ClubsController@subObjects');
             Route::post('/', 'Clubs\ClubsController@store');
             Route::patch('/{golf_clubs}', 'Clubs\ClubsController@update');
             Route::delete('/{golf_clubs}', 'Clubs\ClubsController@destroy');
@@ -15,6 +16,7 @@ Route::prefix('golf')->group(function () {
         function () {
             Route::get('/', 'Courses\CoursesController@index');
             Route::get('/{golf_courses}', 'Courses\CoursesController@show');
+            Route::get('/{golf_courses}/{subObjects}', 'Courses\CoursesController@subObjects');
             Route::post('/', 'Courses\CoursesController@store');
             Route::patch('/{golf_courses}', 'Courses\CoursesController@update');
             Route::delete('/{golf_courses}', 'Courses\CoursesController@destroy');
@@ -25,6 +27,7 @@ Route::prefix('golf')->group(function () {
         function () {
             Route::get('/', 'Reservations\ReservationsController@index');
             Route::get('/{golf_reservations}', 'Reservations\ReservationsController@show');
+            Route::get('/{golf_reservations}/{subObjects}', 'Reservations\ReservationsController@subObjects');
             Route::post('/', 'Reservations\ReservationsController@store');
             Route::patch('/{golf_reservations}', 'Reservations\ReservationsController@update');
             Route::delete('/{golf_reservations}', 'Reservations\ReservationsController@destroy');
@@ -35,12 +38,14 @@ Route::prefix('golf')->group(function () {
         function () {
             Route::get('/', 'TeeTimes\TeeTimesController@index');
             Route::get('/{golf_tee_times}', 'TeeTimes\TeeTimesController@show');
+            Route::get('/{golf_tee_times}/{subObjects}', 'TeeTimes\TeeTimesController@subObjects');
             Route::post('/', 'TeeTimes\TeeTimesController@store');
             Route::patch('/{golf_tee_times}', 'TeeTimes\TeeTimesController@update');
             Route::delete('/{golf_tee_times}', 'TeeTimes\TeeTimesController@destroy');
         }
     );
 
-// EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n
+// EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE
 
 });
+
