@@ -11,13 +11,13 @@ use NextDeveloper\Commons\Common\Cache\CacheHelper;
 use NextDeveloper\Commons\Helpers\DatabaseHelper;
 use NextDeveloper\Golf\Database\Models\TeeTimes;
 use NextDeveloper\Golf\Database\Filters\TeeTimesQueryFilter;
+use NextDeveloper\Commons\Exceptions\ModelNotFoundException;
 use NextDeveloper\Golf\Events\TeeTimes\TeeTimesCreatedEvent;
 use NextDeveloper\Golf\Events\TeeTimes\TeeTimesCreatingEvent;
 use NextDeveloper\Golf\Events\TeeTimes\TeeTimesUpdatedEvent;
 use NextDeveloper\Golf\Events\TeeTimes\TeeTimesUpdatingEvent;
 use NextDeveloper\Golf\Events\TeeTimes\TeeTimesDeletedEvent;
 use NextDeveloper\Golf\Events\TeeTimes\TeeTimesDeletingEvent;
-
 
 /**
  * This class is responsible from managing the data for TeeTimes
@@ -94,6 +94,31 @@ class AbstractTeeTimesService
     public static function getById($id) : ?TeeTimes
     {
         return TeeTimes::where('id', $id)->first();
+    }
+
+    /**
+     * This method returns the sub objects of the related models
+     *
+     * @param  $uuid
+     * @param  $object
+     * @return void
+     * @throws \Laravel\Octane\Exceptions\DdException
+     */
+    public static function relatedObjects($uuid, $object)
+    {
+        try {
+            $obj = TeeTimes::where('uuid', $uuid)->first();
+
+            if(!$obj) {
+                throw new ModelNotFoundException('Cannot find the related model');
+            }
+
+            if($obj) {
+                return $obj->$object;
+            }
+        } catch (\Exception $e) {
+            dd($e);
+        }
     }
 
     /**

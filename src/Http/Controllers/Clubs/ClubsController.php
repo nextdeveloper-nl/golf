@@ -7,11 +7,15 @@ use NextDeveloper\Golf\Http\Controllers\AbstractController;
 use NextDeveloper\Generator\Http\Traits\ResponsableFactory;
 use NextDeveloper\Golf\Http\Requests\Clubs\ClubsUpdateRequest;
 use NextDeveloper\Golf\Database\Filters\ClubsQueryFilter;
+use NextDeveloper\Golf\Database\Models\Clubs;
 use NextDeveloper\Golf\Services\ClubsService;
 use NextDeveloper\Golf\Http\Requests\Clubs\ClubsCreateRequest;
-
+use NextDeveloper\Commons\Http\Traits\Tags;
 class ClubsController extends AbstractController
 {
+    private $model = Clubs::class;
+
+    use Tags;
     /**
      * This method returns the list of clubs.
      *
@@ -46,15 +50,18 @@ class ClubsController extends AbstractController
     }
 
     /**
-     * This method returns the list of sub objects the related object.
+     * This method returns the list of sub objects the related object. Sub object means an object which is preowned by
+     * this object.
+     *
+     * It can be tags, addresses, states etc.
      *
      * @param  $ref
      * @param  $subObject
      * @return void
      */
-    public function subObjects($ref, $subObject)
+    public function relatedObjects($ref, $subObject)
     {
-        $objects = ClubsService::getSubObjects($ref, $subObject);
+        $objects = ClubsService::relatedObjects($ref, $subObject);
 
         return ResponsableFactory::makeResponse($this, $objects);
     }

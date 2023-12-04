@@ -7,11 +7,15 @@ use NextDeveloper\Golf\Http\Controllers\AbstractController;
 use NextDeveloper\Generator\Http\Traits\ResponsableFactory;
 use NextDeveloper\Golf\Http\Requests\TeeTimes\TeeTimesUpdateRequest;
 use NextDeveloper\Golf\Database\Filters\TeeTimesQueryFilter;
+use NextDeveloper\Golf\Database\Models\TeeTimes;
 use NextDeveloper\Golf\Services\TeeTimesService;
 use NextDeveloper\Golf\Http\Requests\TeeTimes\TeeTimesCreateRequest;
-
+use NextDeveloper\Commons\Http\Traits\Tags;
 class TeeTimesController extends AbstractController
 {
+    private $model = TeeTimes::class;
+
+    use Tags;
     /**
      * This method returns the list of teetimes.
      *
@@ -46,15 +50,18 @@ class TeeTimesController extends AbstractController
     }
 
     /**
-     * This method returns the list of sub objects the related object.
+     * This method returns the list of sub objects the related object. Sub object means an object which is preowned by
+     * this object.
+     *
+     * It can be tags, addresses, states etc.
      *
      * @param  $ref
      * @param  $subObject
      * @return void
      */
-    public function subObjects($ref, $subObject)
+    public function relatedObjects($ref, $subObject)
     {
-        $objects = TeeTimesService::getSubObjects($ref, $subObject);
+        $objects = TeeTimesService::relatedObjects($ref, $subObject);
 
         return ResponsableFactory::makeResponse($this, $objects);
     }

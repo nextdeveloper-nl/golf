@@ -11,13 +11,13 @@ use NextDeveloper\Commons\Common\Cache\CacheHelper;
 use NextDeveloper\Commons\Helpers\DatabaseHelper;
 use NextDeveloper\Golf\Database\Models\Clubs;
 use NextDeveloper\Golf\Database\Filters\ClubsQueryFilter;
+use NextDeveloper\Commons\Exceptions\ModelNotFoundException;
 use NextDeveloper\Golf\Events\Clubs\ClubsCreatedEvent;
 use NextDeveloper\Golf\Events\Clubs\ClubsCreatingEvent;
 use NextDeveloper\Golf\Events\Clubs\ClubsUpdatedEvent;
 use NextDeveloper\Golf\Events\Clubs\ClubsUpdatingEvent;
 use NextDeveloper\Golf\Events\Clubs\ClubsDeletedEvent;
 use NextDeveloper\Golf\Events\Clubs\ClubsDeletingEvent;
-
 
 /**
  * This class is responsible from managing the data for Clubs
@@ -94,6 +94,31 @@ class AbstractClubsService
     public static function getById($id) : ?Clubs
     {
         return Clubs::where('id', $id)->first();
+    }
+
+    /**
+     * This method returns the sub objects of the related models
+     *
+     * @param  $uuid
+     * @param  $object
+     * @return void
+     * @throws \Laravel\Octane\Exceptions\DdException
+     */
+    public static function relatedObjects($uuid, $object)
+    {
+        try {
+            $obj = Clubs::where('uuid', $uuid)->first();
+
+            if(!$obj) {
+                throw new ModelNotFoundException('Cannot find the related model');
+            }
+
+            if($obj) {
+                return $obj->$object;
+            }
+        } catch (\Exception $e) {
+            dd($e);
+        }
     }
 
     /**

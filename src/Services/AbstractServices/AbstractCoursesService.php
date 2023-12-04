@@ -11,13 +11,13 @@ use NextDeveloper\Commons\Common\Cache\CacheHelper;
 use NextDeveloper\Commons\Helpers\DatabaseHelper;
 use NextDeveloper\Golf\Database\Models\Courses;
 use NextDeveloper\Golf\Database\Filters\CoursesQueryFilter;
+use NextDeveloper\Commons\Exceptions\ModelNotFoundException;
 use NextDeveloper\Golf\Events\Courses\CoursesCreatedEvent;
 use NextDeveloper\Golf\Events\Courses\CoursesCreatingEvent;
 use NextDeveloper\Golf\Events\Courses\CoursesUpdatedEvent;
 use NextDeveloper\Golf\Events\Courses\CoursesUpdatingEvent;
 use NextDeveloper\Golf\Events\Courses\CoursesDeletedEvent;
 use NextDeveloper\Golf\Events\Courses\CoursesDeletingEvent;
-
 
 /**
  * This class is responsible from managing the data for Courses
@@ -94,6 +94,31 @@ class AbstractCoursesService
     public static function getById($id) : ?Courses
     {
         return Courses::where('id', $id)->first();
+    }
+
+    /**
+     * This method returns the sub objects of the related models
+     *
+     * @param  $uuid
+     * @param  $object
+     * @return void
+     * @throws \Laravel\Octane\Exceptions\DdException
+     */
+    public static function relatedObjects($uuid, $object)
+    {
+        try {
+            $obj = Courses::where('uuid', $uuid)->first();
+
+            if(!$obj) {
+                throw new ModelNotFoundException('Cannot find the related model');
+            }
+
+            if($obj) {
+                return $obj->$object;
+            }
+        } catch (\Exception $e) {
+            dd($e);
+        }
     }
 
     /**

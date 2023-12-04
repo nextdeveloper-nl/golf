@@ -7,11 +7,15 @@ use NextDeveloper\Golf\Http\Controllers\AbstractController;
 use NextDeveloper\Generator\Http\Traits\ResponsableFactory;
 use NextDeveloper\Golf\Http\Requests\Reservations\ReservationsUpdateRequest;
 use NextDeveloper\Golf\Database\Filters\ReservationsQueryFilter;
+use NextDeveloper\Golf\Database\Models\Reservations;
 use NextDeveloper\Golf\Services\ReservationsService;
 use NextDeveloper\Golf\Http\Requests\Reservations\ReservationsCreateRequest;
-
+use NextDeveloper\Commons\Http\Traits\Tags;
 class ReservationsController extends AbstractController
 {
+    private $model = Reservations::class;
+
+    use Tags;
     /**
      * This method returns the list of reservations.
      *
@@ -46,15 +50,18 @@ class ReservationsController extends AbstractController
     }
 
     /**
-     * This method returns the list of sub objects the related object.
+     * This method returns the list of sub objects the related object. Sub object means an object which is preowned by
+     * this object.
+     *
+     * It can be tags, addresses, states etc.
      *
      * @param  $ref
      * @param  $subObject
      * @return void
      */
-    public function subObjects($ref, $subObject)
+    public function relatedObjects($ref, $subObject)
     {
-        $objects = ReservationsService::getSubObjects($ref, $subObject);
+        $objects = ReservationsService::relatedObjects($ref, $subObject);
 
         return ResponsableFactory::makeResponse($this, $objects);
     }

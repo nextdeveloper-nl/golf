@@ -11,13 +11,13 @@ use NextDeveloper\Commons\Common\Cache\CacheHelper;
 use NextDeveloper\Commons\Helpers\DatabaseHelper;
 use NextDeveloper\Golf\Database\Models\Reservations;
 use NextDeveloper\Golf\Database\Filters\ReservationsQueryFilter;
+use NextDeveloper\Commons\Exceptions\ModelNotFoundException;
 use NextDeveloper\Golf\Events\Reservations\ReservationsCreatedEvent;
 use NextDeveloper\Golf\Events\Reservations\ReservationsCreatingEvent;
 use NextDeveloper\Golf\Events\Reservations\ReservationsUpdatedEvent;
 use NextDeveloper\Golf\Events\Reservations\ReservationsUpdatingEvent;
 use NextDeveloper\Golf\Events\Reservations\ReservationsDeletedEvent;
 use NextDeveloper\Golf\Events\Reservations\ReservationsDeletingEvent;
-
 
 /**
  * This class is responsible from managing the data for Reservations
@@ -94,6 +94,31 @@ class AbstractReservationsService
     public static function getById($id) : ?Reservations
     {
         return Reservations::where('id', $id)->first();
+    }
+
+    /**
+     * This method returns the sub objects of the related models
+     *
+     * @param  $uuid
+     * @param  $object
+     * @return void
+     * @throws \Laravel\Octane\Exceptions\DdException
+     */
+    public static function relatedObjects($uuid, $object)
+    {
+        try {
+            $obj = Reservations::where('uuid', $uuid)->first();
+
+            if(!$obj) {
+                throw new ModelNotFoundException('Cannot find the related model');
+            }
+
+            if($obj) {
+                return $obj->$object;
+            }
+        } catch (\Exception $e) {
+            dd($e);
+        }
     }
 
     /**
