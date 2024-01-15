@@ -4,7 +4,7 @@ namespace NextDeveloper\Golf\Http\Controllers\TeeTimes;
 
 use Illuminate\Http\Request;
 use NextDeveloper\Golf\Http\Controllers\AbstractController;
-use NextDeveloper\Generator\Http\Traits\ResponsableFactory;
+use NextDeveloper\Commons\Http\Traits\ResponsableFactory;
 use NextDeveloper\Golf\Http\Requests\TeeTimes\TeeTimesUpdateRequest;
 use NextDeveloper\Golf\Database\Filters\TeeTimesQueryFilter;
 use NextDeveloper\Golf\Database\Models\TeeTimes;

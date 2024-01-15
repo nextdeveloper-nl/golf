@@ -4,7 +4,7 @@ namespace NextDeveloper\Golf\Http\Controllers\Clubs;
 
 use Illuminate\Http\Request;
 use NextDeveloper\Golf\Http\Controllers\AbstractController;
-use NextDeveloper\Generator\Http\Traits\ResponsableFactory;
+use NextDeveloper\Commons\Http\Traits\ResponsableFactory;
 use NextDeveloper\Golf\Http\Requests\Clubs\ClubsUpdateRequest;
 use NextDeveloper\Golf\Database\Filters\ClubsQueryFilter;
 use NextDeveloper\Golf\Database\Models\Clubs;
