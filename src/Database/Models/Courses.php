@@ -52,16 +52,15 @@ class Courses extends Model
      @var array
      */
     protected $casts = [
-    'id'                 => 'integer',
-    'uuid'               => 'string',
-    'golf_club_id'       => 'integer',
-    'name'               => 'string',
-    'description'        => 'string',
-    'price'              => 'double',
+    'id' => 'integer',
+    'golf_club_id' => 'integer',
+    'name' => 'string',
+    'description' => 'string',
+    'facilities' => 'array',
     'common_currency_id' => 'integer',
-    'created_at'         => 'datetime',
-    'updated_at'         => 'datetime',
-    'deleted_at'         => 'datetime',
+    'created_at' => 'datetime',
+    'updated_at' => 'datetime',
+    'deleted_at' => 'datetime',
     ];
 
     /**
@@ -122,27 +121,8 @@ class Courses extends Model
         }
     }
 
-    public function countries() : \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(\NextDeveloper\Commons\Database\Models\Countries::class);
-    }
-    
-    public function clubs() : \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(\NextDeveloper\Golf\Database\Models\Clubs::class);
-    }
-    
-    public function reservations() : \Illuminate\Database\Eloquent\Relations\HasMany
-    {
-        return $this->hasMany(\NextDeveloper\Golf\Database\Models\Reservations::class);
-    }
-
-    public function teeTimes() : \Illuminate\Database\Eloquent\Relations\HasMany
-    {
-        return $this->hasMany(\NextDeveloper\Golf\Database\Models\TeeTimes::class);
-    }
-
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n\n\n\n\n\n\n
+
 
 
 

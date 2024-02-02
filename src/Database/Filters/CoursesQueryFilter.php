@@ -27,19 +27,6 @@ class CoursesQueryFilter extends AbstractQueryFilter
         return $this->builder->where('description', 'like', '%' . $value . '%');
     }
 
-    public function price($value)
-    {
-        $operator = substr($value, 0, 1);
-
-        if ($operator != '<' || $operator != '>') {
-            $operator = '=';
-        } else {
-            $value = substr($value, 1);
-        }
-
-        return $this->builder->where('price', $operator, $value);
-    }
-    
     public function createdAtStart($date) 
     {
         return $this->builder->where('created_at', '>=', $date);

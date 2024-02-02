@@ -13,9 +13,9 @@ class TeeTimesUpdateRequest extends AbstractFormRequest
     public function rules()
     {
         return [
-            'tee_time'       => 'nullable|date',
-        'features'       => 'nullable',
-        'golf_club_id'   => 'nullable|exists:golf_clubs,uuid|uuid',
+            'tee_time' => 'nullable|date',
+        'features' => 'nullable',
+        'golf_club_id' => 'nullable|exists:golf_clubs,uuid|uuid',
         'golf_course_id' => 'nullable|exists:golf_courses,uuid|uuid',
         ];
     }
