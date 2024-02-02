@@ -13,11 +13,11 @@ class ClubsUpdateRequest extends AbstractFormRequest
     public function rules()
     {
         return [
-            'name'           => 'nullable|string|max:500',
-        'description'    => 'nullable|string',
-        'address'        => 'nullable|string|max:500',
-        'facilities'     => 'nullable',
-        'city'           => 'nullable|string|max:50',
+            'name' => 'nullable|string',
+        'description' => 'nullable|string',
+        'address' => 'nullable|string',
+        'facilities' => 'nullable',
+        'common_city_id' => 'nullable|exists:common_cities,uuid|uuid',
         ];
     }
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n

@@ -4,7 +4,7 @@ namespace NextDeveloper\Golf\Http\Controllers\Reservations;
 
 use Illuminate\Http\Request;
 use NextDeveloper\Golf\Http\Controllers\AbstractController;
-use NextDeveloper\Commons\Http\Traits\ResponsableFactory;
+use NextDeveloper\Commons\Http\Response\ResponsableFactory;
 use NextDeveloper\Golf\Http\Requests\Reservations\ReservationsUpdateRequest;
 use NextDeveloper\Golf\Database\Filters\ReservationsQueryFilter;
 use NextDeveloper\Golf\Database\Models\Reservations;

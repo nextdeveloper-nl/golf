@@ -52,14 +52,14 @@ class Reservations extends Model
      @var array
      */
     protected $casts = [
-    'id'               => 'integer',
-    'uuid'             => 'string',
+    'id' => 'integer',
     'golf_tee_time_id' => 'integer',
-    'golf_club_id'     => 'integer',
-    'golf_course_id'   => 'integer',
-    'created_at'       => 'datetime',
-    'updated_at'       => 'datetime',
-    'deleted_at'       => 'datetime',
+    'golf_club_id' => 'integer',
+    'golf_course_id' => 'integer',
+    'reservation_data' => 'array',
+    'created_at' => 'datetime',
+    'updated_at' => 'datetime',
+    'deleted_at' => 'datetime',
     ];
 
     /**
@@ -120,22 +120,8 @@ class Reservations extends Model
         }
     }
 
-    public function clubs() : \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(\NextDeveloper\Golf\Database\Models\Clubs::class);
-    }
-    
-    public function courses() : \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(\NextDeveloper\Golf\Database\Models\Courses::class);
-    }
-    
-    public function hotels() : \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(\NextDeveloper\Stay\Database\Models\Hotels::class);
-    }
-    
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n\n\n\n\n\n\n
+
 
 
 

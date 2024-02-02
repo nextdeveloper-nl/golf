@@ -52,14 +52,14 @@ class TeeTimes extends Model
      @var array
      */
     protected $casts = [
-    'id'             => 'integer',
-    'uuid'           => 'string',
-    'tee_time'       => 'datetime',
-    'golf_club_id'   => 'integer',
+    'id' => 'integer',
+    'tee_time' => 'datetime',
+    'features' => 'array',
+    'golf_club_id' => 'integer',
     'golf_course_id' => 'integer',
-    'created_at'     => 'datetime',
-    'updated_at'     => 'datetime',
-    'deleted_at'     => 'datetime',
+    'created_at' => 'datetime',
+    'updated_at' => 'datetime',
+    'deleted_at' => 'datetime',
     ];
 
     /**
@@ -121,17 +121,8 @@ class TeeTimes extends Model
         }
     }
 
-    public function clubs() : \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(\NextDeveloper\Golf\Database\Models\Clubs::class);
-    }
-    
-    public function courses() : \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(\NextDeveloper\Golf\Database\Models\Courses::class);
-    }
-    
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n\n\n\n\n\n\n
+
 
 
 

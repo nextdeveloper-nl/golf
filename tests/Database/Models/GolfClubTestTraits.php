@@ -61,7 +61,6 @@ trait GolfClubTestTraits
                 'name'  =>  'a',
                 'description'  =>  'a',
                 'address'  =>  'a',
-                'city'  =>  'a',
                             ],
                 ['http_errors' => false]
             ]
@@ -388,25 +387,6 @@ trait GolfClubTestTraits
             $request = new Request(
                 [
                 'address'  =>  'a'
-                ]
-            );
-
-            $filter = new GolfClubQueryFilter($request);
-
-            $model = \NextDeveloper\Golf\Database\Models\GolfClub::filter($filter)->first();
-        } catch (\Exception $e) {
-            $this->assertFalse(false, $e->getMessage());
-        }
-
-        $this->assertTrue(true);
-    }
-
-    public function test_golfclub_event_city_filter()
-    {
-        try {
-            $request = new Request(
-                [
-                'city'  =>  'a'
                 ]
             );
 

@@ -13,11 +13,11 @@ class CoursesUpdateRequest extends AbstractFormRequest
     public function rules()
     {
         return [
-            'golf_club_id'       => 'nullable|exists:golf_clubs,uuid|uuid',
-        'name'               => 'nullable|string|max:500',
-        'description'        => 'nullable|string',
-        'facilities'         => 'nullable',
-        'price'              => 'nullable|numeric',
+            'golf_club_id' => 'nullable|exists:golf_clubs,uuid|uuid',
+        'name' => 'nullable|string',
+        'description' => 'nullable|string',
+        'facilities' => 'nullable',
+        'price' => 'nullable',
         'common_currency_id' => 'nullable|exists:common_currencies,uuid|uuid',
         ];
     }

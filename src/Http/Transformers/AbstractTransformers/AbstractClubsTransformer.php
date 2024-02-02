@@ -22,6 +22,7 @@ class AbstractClubsTransformer extends AbstractTransformer
     {
                         $iamAccountId = \NextDeveloper\IAM\Database\Models\Accounts::where('id', $model->iam_account_id)->first();
                     $iamUserId = \NextDeveloper\IAM\Database\Models\Users::where('id', $model->iam_user_id)->first();
+                    $commonCityId = \NextDeveloper\Commons\Database\Models\Cities::where('id', $model->common_city_id)->first();
         
         return $this->buildPayload(
             [
@@ -32,15 +33,16 @@ class AbstractClubsTransformer extends AbstractTransformer
             'description'  =>  $model->description,
             'address'  =>  $model->address,
             'facilities'  =>  $model->facilities,
-            'city'  =>  $model->city,
-            'created_at'  =>  $model->created_at ? $model->created_at->toIso8601String() : null,
-            'updated_at'  =>  $model->updated_at ? $model->updated_at->toIso8601String() : null,
-            'deleted_at'  =>  $model->deleted_at ? $model->deleted_at->toIso8601String() : null,
+            'common_city_id'  =>  $commonCityId ? $commonCityId->uuid : null,
+            'created_at'  =>  $model->created_at,
+            'updated_at'  =>  $model->updated_at,
+            'deleted_at'  =>  $model->deleted_at,
             ]
         );
     }
 
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n
+
 
 
 

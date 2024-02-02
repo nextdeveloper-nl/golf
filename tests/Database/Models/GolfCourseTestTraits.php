@@ -60,7 +60,6 @@ trait GolfCourseTestTraits
             'form_params'   =>  [
                 'name'  =>  'a',
                 'description'  =>  'a',
-                'price'  =>  '1',
                             ],
                 ['http_errors' => false]
             ]
@@ -368,25 +367,6 @@ trait GolfCourseTestTraits
             $request = new Request(
                 [
                 'description'  =>  'a'
-                ]
-            );
-
-            $filter = new GolfCourseQueryFilter($request);
-
-            $model = \NextDeveloper\Golf\Database\Models\GolfCourse::filter($filter)->first();
-        } catch (\Exception $e) {
-            $this->assertFalse(false, $e->getMessage());
-        }
-
-        $this->assertTrue(true);
-    }
-
-    public function test_golfcourse_event_price_filter()
-    {
-        try {
-            $request = new Request(
-                [
-                'price'  =>  '1'
                 ]
             );
 

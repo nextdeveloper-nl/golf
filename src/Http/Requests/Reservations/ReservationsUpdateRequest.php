@@ -14,8 +14,8 @@ class ReservationsUpdateRequest extends AbstractFormRequest
     {
         return [
             'golf_tee_time_id' => 'nullable|exists:golf_tee_times,uuid|uuid',
-        'golf_club_id'     => 'nullable|exists:golf_clubs,uuid|uuid',
-        'golf_course_id'   => 'nullable|exists:golf_courses,uuid|uuid',
+        'golf_club_id' => 'nullable|exists:golf_clubs,uuid|uuid',
+        'golf_course_id' => 'nullable|exists:golf_courses,uuid|uuid',
         'reservation_data' => 'nullable',
         ];
     }
