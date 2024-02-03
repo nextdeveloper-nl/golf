@@ -4,6 +4,7 @@ namespace NextDeveloper\Golf\Database\Observers;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use NextDeveloper\IAM\Helpers\UserHelper;
 
 /**
  * Class ClubsObserver
@@ -29,6 +30,7 @@ class ClubsObserver
      */
     public function creating(Model $model)
     {
+        return UserHelper::applyUserFields($model);
     }
 
     /**
@@ -47,6 +49,7 @@ class ClubsObserver
      */
     public function saving(Model $model)
     {
+        return UserHelper::applyUserFields($model);
     }
 
     /**
@@ -64,6 +67,7 @@ class ClubsObserver
      */
     public function updating(Model $model)
     {
+        return UserHelper::applyUserFields($model);
     }
 
     /**
