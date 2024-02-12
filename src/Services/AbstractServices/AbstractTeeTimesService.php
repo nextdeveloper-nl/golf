@@ -12,12 +12,7 @@ use NextDeveloper\Commons\Helpers\DatabaseHelper;
 use NextDeveloper\Golf\Database\Models\TeeTimes;
 use NextDeveloper\Golf\Database\Filters\TeeTimesQueryFilter;
 use NextDeveloper\Commons\Exceptions\ModelNotFoundException;
-use NextDeveloper\Golf\Events\TeeTimes\TeeTimesCreatedEvent;
-use NextDeveloper\Golf\Events\TeeTimes\TeeTimesCreatingEvent;
-use NextDeveloper\Golf\Events\TeeTimes\TeeTimesUpdatedEvent;
-use NextDeveloper\Golf\Events\TeeTimes\TeeTimesUpdatingEvent;
-use NextDeveloper\Golf\Events\TeeTimes\TeeTimesDeletedEvent;
-use NextDeveloper\Golf\Events\TeeTimes\TeeTimesDeletingEvent;
+use NextDeveloper\Events\Services\Events;
 
 /**
  * This class is responsible from managing the data for TeeTimes
@@ -132,8 +127,6 @@ class AbstractTeeTimesService
      */
     public static function create(array $data)
     {
-        event(new TeeTimesCreatingEvent());
-
         if (array_key_exists('golf_club_id', $data)) {
             $data['golf_club_id'] = DatabaseHelper::uuidToId(
                 '\NextDeveloper\Golf\Database\Models\Clubs',
@@ -153,16 +146,16 @@ class AbstractTeeTimesService
             throw $e;
         }
 
-        event(new TeeTimesCreatedEvent($model));
+        Events::fire('created:NextDeveloper\Golf\TeeTimes', $model);
 
         return $model->fresh();
     }
 
     /**
-     This function expects the ID inside the object.
-    
-     @param  array $data
-     @return TeeTimes
+     * This function expects the ID inside the object.
+     *
+     * @param  array $data
+     * @return TeeTimes
      */
     public static function updateRaw(array $data) : ?TeeTimes
     {
@@ -200,7 +193,7 @@ class AbstractTeeTimesService
             );
         }
     
-        event(new TeeTimesUpdatingEvent($model));
+        Events::fire('updating:NextDeveloper\Golf\TeeTimes', $model);
 
         try {
             $isUpdated = $model->update($data);
@@ -209,7 +202,7 @@ class AbstractTeeTimesService
             throw $e;
         }
 
-        event(new TeeTimesUpdatedEvent($model));
+        Events::fire('updated:NextDeveloper\Golf\TeeTimes', $model);
 
         return $model->fresh();
     }
@@ -228,7 +221,7 @@ class AbstractTeeTimesService
     {
         $model = TeeTimes::where('uuid', $id)->first();
 
-        event(new TeeTimesDeletingEvent());
+        Events::fire('deleted:NextDeveloper\Golf\TeeTimes', $model);
 
         try {
             $model = $model->delete();

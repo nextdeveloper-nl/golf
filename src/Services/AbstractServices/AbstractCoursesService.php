@@ -12,12 +12,7 @@ use NextDeveloper\Commons\Helpers\DatabaseHelper;
 use NextDeveloper\Golf\Database\Models\Courses;
 use NextDeveloper\Golf\Database\Filters\CoursesQueryFilter;
 use NextDeveloper\Commons\Exceptions\ModelNotFoundException;
-use NextDeveloper\Golf\Events\Courses\CoursesCreatedEvent;
-use NextDeveloper\Golf\Events\Courses\CoursesCreatingEvent;
-use NextDeveloper\Golf\Events\Courses\CoursesUpdatedEvent;
-use NextDeveloper\Golf\Events\Courses\CoursesUpdatingEvent;
-use NextDeveloper\Golf\Events\Courses\CoursesDeletedEvent;
-use NextDeveloper\Golf\Events\Courses\CoursesDeletingEvent;
+use NextDeveloper\Events\Services\Events;
 
 /**
  * This class is responsible from managing the data for Courses
@@ -132,8 +127,6 @@ class AbstractCoursesService
      */
     public static function create(array $data)
     {
-        event(new CoursesCreatingEvent());
-
         if (array_key_exists('golf_club_id', $data)) {
             $data['golf_club_id'] = DatabaseHelper::uuidToId(
                 '\NextDeveloper\Golf\Database\Models\Clubs',
@@ -153,16 +146,16 @@ class AbstractCoursesService
             throw $e;
         }
 
-        event(new CoursesCreatedEvent($model));
+        Events::fire('created:NextDeveloper\Golf\Courses', $model);
 
         return $model->fresh();
     }
 
     /**
-     This function expects the ID inside the object.
-    
-     @param  array $data
-     @return Courses
+     * This function expects the ID inside the object.
+     *
+     * @param  array $data
+     * @return Courses
      */
     public static function updateRaw(array $data) : ?Courses
     {
@@ -200,7 +193,7 @@ class AbstractCoursesService
             );
         }
     
-        event(new CoursesUpdatingEvent($model));
+        Events::fire('updating:NextDeveloper\Golf\Courses', $model);
 
         try {
             $isUpdated = $model->update($data);
@@ -209,7 +202,7 @@ class AbstractCoursesService
             throw $e;
         }
 
-        event(new CoursesUpdatedEvent($model));
+        Events::fire('updated:NextDeveloper\Golf\Courses', $model);
 
         return $model->fresh();
     }
@@ -228,7 +221,7 @@ class AbstractCoursesService
     {
         $model = Courses::where('uuid', $id)->first();
 
-        event(new CoursesDeletingEvent());
+        Events::fire('deleted:NextDeveloper\Golf\Courses', $model);
 
         try {
             $model = $model->delete();

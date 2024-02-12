@@ -12,12 +12,7 @@ use NextDeveloper\Commons\Helpers\DatabaseHelper;
 use NextDeveloper\Golf\Database\Models\Reservations;
 use NextDeveloper\Golf\Database\Filters\ReservationsQueryFilter;
 use NextDeveloper\Commons\Exceptions\ModelNotFoundException;
-use NextDeveloper\Golf\Events\Reservations\ReservationsCreatedEvent;
-use NextDeveloper\Golf\Events\Reservations\ReservationsCreatingEvent;
-use NextDeveloper\Golf\Events\Reservations\ReservationsUpdatedEvent;
-use NextDeveloper\Golf\Events\Reservations\ReservationsUpdatingEvent;
-use NextDeveloper\Golf\Events\Reservations\ReservationsDeletedEvent;
-use NextDeveloper\Golf\Events\Reservations\ReservationsDeletingEvent;
+use NextDeveloper\Events\Services\Events;
 
 /**
  * This class is responsible from managing the data for Reservations
@@ -132,8 +127,6 @@ class AbstractReservationsService
      */
     public static function create(array $data)
     {
-        event(new ReservationsCreatingEvent());
-
         if (array_key_exists('golf_tee_time_id', $data)) {
             $data['golf_tee_time_id'] = DatabaseHelper::uuidToId(
                 '\NextDeveloper\Golf\Database\Models\TeeTimes',
@@ -165,16 +158,16 @@ class AbstractReservationsService
             throw $e;
         }
 
-        event(new ReservationsCreatedEvent($model));
+        Events::fire('created:NextDeveloper\Golf\Reservations', $model);
 
         return $model->fresh();
     }
 
     /**
-     This function expects the ID inside the object.
-    
-     @param  array $data
-     @return Reservations
+     * This function expects the ID inside the object.
+     *
+     * @param  array $data
+     * @return Reservations
      */
     public static function updateRaw(array $data) : ?Reservations
     {
@@ -224,7 +217,7 @@ class AbstractReservationsService
             );
         }
     
-        event(new ReservationsUpdatingEvent($model));
+        Events::fire('updating:NextDeveloper\Golf\Reservations', $model);
 
         try {
             $isUpdated = $model->update($data);
@@ -233,7 +226,7 @@ class AbstractReservationsService
             throw $e;
         }
 
-        event(new ReservationsUpdatedEvent($model));
+        Events::fire('updated:NextDeveloper\Golf\Reservations', $model);
 
         return $model->fresh();
     }
@@ -252,7 +245,7 @@ class AbstractReservationsService
     {
         $model = Reservations::where('uuid', $id)->first();
 
-        event(new ReservationsDeletingEvent());
+        Events::fire('deleted:NextDeveloper\Golf\Reservations', $model);
 
         try {
             $model = $model->delete();

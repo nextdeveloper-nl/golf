@@ -12,12 +12,7 @@ use NextDeveloper\Commons\Helpers\DatabaseHelper;
 use NextDeveloper\Golf\Database\Models\Clubs;
 use NextDeveloper\Golf\Database\Filters\ClubsQueryFilter;
 use NextDeveloper\Commons\Exceptions\ModelNotFoundException;
-use NextDeveloper\Golf\Events\Clubs\ClubsCreatedEvent;
-use NextDeveloper\Golf\Events\Clubs\ClubsCreatingEvent;
-use NextDeveloper\Golf\Events\Clubs\ClubsUpdatedEvent;
-use NextDeveloper\Golf\Events\Clubs\ClubsUpdatingEvent;
-use NextDeveloper\Golf\Events\Clubs\ClubsDeletedEvent;
-use NextDeveloper\Golf\Events\Clubs\ClubsDeletingEvent;
+use NextDeveloper\Events\Services\Events;
 
 /**
  * This class is responsible from managing the data for Clubs
@@ -132,8 +127,6 @@ class AbstractClubsService
      */
     public static function create(array $data)
     {
-        event(new ClubsCreatingEvent());
-
         if (array_key_exists('iam_account_id', $data)) {
             $data['iam_account_id'] = DatabaseHelper::uuidToId(
                 '\NextDeveloper\IAM\Database\Models\Accounts',
@@ -146,6 +139,12 @@ class AbstractClubsService
                 $data['iam_user_id']
             );
         }
+        if (array_key_exists('common_city_id', $data)) {
+            $data['common_city_id'] = DatabaseHelper::uuidToId(
+                '\NextDeveloper\Commons\Database\Models\Cities',
+                $data['common_city_id']
+            );
+        }
     
         try {
             $model = Clubs::create($data);
@@ -153,16 +152,16 @@ class AbstractClubsService
             throw $e;
         }
 
-        event(new ClubsCreatedEvent($model));
+        Events::fire('created:NextDeveloper\Golf\Clubs', $model);
 
         return $model->fresh();
     }
 
     /**
-     This function expects the ID inside the object.
-    
-     @param  array $data
-     @return Clubs
+     * This function expects the ID inside the object.
+     *
+     * @param  array $data
+     * @return Clubs
      */
     public static function updateRaw(array $data) : ?Clubs
     {
@@ -199,8 +198,14 @@ class AbstractClubsService
                 $data['iam_user_id']
             );
         }
+        if (array_key_exists('common_city_id', $data)) {
+            $data['common_city_id'] = DatabaseHelper::uuidToId(
+                '\NextDeveloper\Commons\Database\Models\Cities',
+                $data['common_city_id']
+            );
+        }
     
-        event(new ClubsUpdatingEvent($model));
+        Events::fire('updating:NextDeveloper\Golf\Clubs', $model);
 
         try {
             $isUpdated = $model->update($data);
@@ -209,7 +214,7 @@ class AbstractClubsService
             throw $e;
         }
 
-        event(new ClubsUpdatedEvent($model));
+        Events::fire('updated:NextDeveloper\Golf\Clubs', $model);
 
         return $model->fresh();
     }
@@ -228,7 +233,7 @@ class AbstractClubsService
     {
         $model = Clubs::where('uuid', $id)->first();
 
-        event(new ClubsDeletingEvent());
+        Events::fire('deleted:NextDeveloper\Golf\Clubs', $model);
 
         try {
             $model = $model->delete();
