@@ -12,9 +12,20 @@ use NextDeveloper\Commons\Common\Cache\Traits\CleanCache;
 use NextDeveloper\Commons\Database\Traits\Taggable;
 
 /**
- * Class Courses.
+ * Courses model.
  *
- * @package NextDeveloper\Golf\Database\Models
+ * @package  NextDeveloper\Golf\Database\Models
+ * @property integer $id
+ * @property string $uuid
+ * @property integer $golf_club_id
+ * @property string $name
+ * @property string $description
+ * @property $facilities
+ * @property $price
+ * @property integer $common_currency_id
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property \Carbon\Carbon $deleted_at
  */
 class Courses extends Model
 {
@@ -31,6 +42,15 @@ class Courses extends Model
      @var array
      */
     protected $guarded = [];
+
+    protected $fillable = [
+            'golf_club_id',
+            'name',
+            'description',
+            'facilities',
+            'price',
+            'common_currency_id',
+    ];
 
     /**
       Here we have the fulltext fields. We can use these for fulltext search if enabled.
@@ -122,6 +142,7 @@ class Courses extends Model
     }
 
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n\n\n\n\n\n\n
+
 
 
 
