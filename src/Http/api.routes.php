@@ -2,21 +2,21 @@
 
 Route::prefix('golf')->group(
     function () {
-        Route::prefix('clubs')->group(
+        Route::prefix('tee-times')->group(
             function () {
-                Route::get('/', 'Clubs\ClubsController@index');
+                Route::get('/', 'TeeTimes\TeeTimesController@index');
 
-                Route::get('{golf_clubs}/tags ', 'Clubs\ClubsController@tags');
-                Route::post('{golf_clubs}/tags ', 'Clubs\ClubsController@saveTags');
-                Route::get('{golf_clubs}/addresses ', 'Clubs\ClubsController@addresses');
-                Route::post('{golf_clubs}/addresses ', 'Clubs\ClubsController@saveAddresses');
+                Route::get('{golf_tee_times}/tags ', 'TeeTimes\TeeTimesController@tags');
+                Route::post('{golf_tee_times}/tags ', 'TeeTimes\TeeTimesController@saveTags');
+                Route::get('{golf_tee_times}/addresses ', 'TeeTimes\TeeTimesController@addresses');
+                Route::post('{golf_tee_times}/addresses ', 'TeeTimes\TeeTimesController@saveAddresses');
 
-                Route::get('/{golf_clubs}/{subObjects}', 'Clubs\ClubsController@relatedObjects');
-                Route::get('/{golf_clubs}', 'Clubs\ClubsController@show');
+                Route::get('/{golf_tee_times}/{subObjects}', 'TeeTimes\TeeTimesController@relatedObjects');
+                Route::get('/{golf_tee_times}', 'TeeTimes\TeeTimesController@show');
 
-                Route::post('/', 'Clubs\ClubsController@store');
-                Route::patch('/{golf_clubs}', 'Clubs\ClubsController@update');
-                Route::delete('/{golf_clubs}', 'Clubs\ClubsController@destroy');
+                Route::post('/', 'TeeTimes\TeeTimesController@store');
+                Route::patch('/{golf_tee_times}', 'TeeTimes\TeeTimesController@update');
+                Route::delete('/{golf_tee_times}', 'TeeTimes\TeeTimesController@destroy');
             }
         );
 
@@ -56,21 +56,21 @@ Route::prefix('golf')->group(
             }
         );
 
-        Route::prefix('tee-times')->group(
+        Route::prefix('clubs')->group(
             function () {
-                Route::get('/', 'TeeTimes\TeeTimesController@index');
+                Route::get('/', 'Clubs\ClubsController@index');
 
-                Route::get('{golf_tee_times}/tags ', 'TeeTimes\TeeTimesController@tags');
-                Route::post('{golf_tee_times}/tags ', 'TeeTimes\TeeTimesController@saveTags');
-                Route::get('{golf_tee_times}/addresses ', 'TeeTimes\TeeTimesController@addresses');
-                Route::post('{golf_tee_times}/addresses ', 'TeeTimes\TeeTimesController@saveAddresses');
+                Route::get('{golf_clubs}/tags ', 'Clubs\ClubsController@tags');
+                Route::post('{golf_clubs}/tags ', 'Clubs\ClubsController@saveTags');
+                Route::get('{golf_clubs}/addresses ', 'Clubs\ClubsController@addresses');
+                Route::post('{golf_clubs}/addresses ', 'Clubs\ClubsController@saveAddresses');
 
-                Route::get('/{golf_tee_times}/{subObjects}', 'TeeTimes\TeeTimesController@relatedObjects');
-                Route::get('/{golf_tee_times}', 'TeeTimes\TeeTimesController@show');
+                Route::get('/{golf_clubs}/{subObjects}', 'Clubs\ClubsController@relatedObjects');
+                Route::get('/{golf_clubs}', 'Clubs\ClubsController@show');
 
-                Route::post('/', 'TeeTimes\TeeTimesController@store');
-                Route::patch('/{golf_tee_times}', 'TeeTimes\TeeTimesController@update');
-                Route::delete('/{golf_tee_times}', 'TeeTimes\TeeTimesController@destroy');
+                Route::post('/', 'Clubs\ClubsController@store');
+                Route::patch('/{golf_clubs}', 'Clubs\ClubsController@update');
+                Route::delete('/{golf_clubs}', 'Clubs\ClubsController@destroy');
             }
         );
 
@@ -88,8 +88,33 @@ Route::prefix('golf')->group(
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 );
+
+
+
+
+
 
 
 
