@@ -15,7 +15,7 @@ class GolferRole extends AbstractRole implements IAuthorizationRole
 {
     public const NAME = 'golfer';
 
-    public const LEVEL = 40;
+    public const LEVEL = 150;
 
     public const DESCRIPTION = 'Golfer';
 
