@@ -15,9 +15,9 @@ class GolfAdminRole extends AbstractRole implements IAuthorizationRole
 {
     public const NAME = 'golf-admin';
 
-    public const LEVEL = 50;
+    public const LEVEL = 100;
 
-    public const DESCRIPTION = 'Golfer Agent';
+    public const DESCRIPTION = 'Golfer Admin Role';
 
     public const DB_PREFIX = 'golf';
 

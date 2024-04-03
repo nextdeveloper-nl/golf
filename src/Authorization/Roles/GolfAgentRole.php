@@ -15,7 +15,7 @@ class GolfAgentRole extends AbstractRole implements IAuthorizationRole
 {
     public const NAME = 'golf-agent';
 
-    public const LEVEL = 45;
+    public const LEVEL = 120;
 
     public const DESCRIPTION = 'Golfer Agent';
 
@@ -33,11 +33,7 @@ class GolfAgentRole extends AbstractRole implements IAuthorizationRole
         /**
          * Here user will be able to list all models, because by default, sales manager can see everybody.
          */
-        $ids = AccountManagers::withoutGlobalScopes()
-            ->where('iam_account_id', UserHelper::currentAccount()->id)
-            ->pluck('crm_account_id');
 
-        $builder->whereIn('iam_account_id', $ids);
     }
 
     public function checkPrivileges(Users $users = null)
