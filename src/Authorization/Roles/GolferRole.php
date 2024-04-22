@@ -30,6 +30,15 @@ class GolferRole extends AbstractRole implements IAuthorizationRole
      */
     public function apply(Builder $builder, Model $model)
     {
+        if($model->getTable() == 'golf_clubs') {
+            $builder->where([
+                'iam_account_id'    =>  UserHelper::currentAccount()->id,
+                'iam_user_id'       =>  UserHelper::me()->id
+            ])->orWhere('is_public', '=', 'true');
+
+            return;
+        }
+
         $builder->where([
             'iam_account_id'    =>  UserHelper::currentAccount()->id,
             'iam_user_id'       =>  UserHelper::me()->id
@@ -93,5 +102,10 @@ class GolferRole extends AbstractRole implements IAuthorizationRole
     public function getDbPrefix()
     {
         return self::DB_PREFIX;
+    }
+
+    public function checkRules(Users $users): bool
+    {
+        // TODO: Implement checkRules() method.
     }
 }
