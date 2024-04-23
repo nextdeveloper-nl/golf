@@ -23,10 +23,10 @@ class ReservationsService extends AbstractReservationsService
     public static function get(ReservationsQueryFilter $filter = null, array $params = []) : \Illuminate\Contracts\Pagination\LengthAwarePaginator|\Illuminate\Database\Eloquent\Collection
     {
         return TeeTimes::withoutGlobalScope(AuthorizationScope::class)
-            ->where('golfer1', UserHelper::me()->iam_user_id)
-            ->orWhere('golfer2', UserHelper::me()->iam_user_id)
-            ->orWhere('golfer3', UserHelper::me()->iam_user_id)
-            ->orWhere('golfer4', UserHelper::me()->iam_user_id)
+            ->where('golfer1', UserHelper::me()->id)
+            ->orWhere('golfer2', UserHelper::me()->id)
+            ->orWhere('golfer3', UserHelper::me()->id)
+            ->orWhere('golfer4', UserHelper::me()->id)
             ->get();
     }
 }
