@@ -27,6 +27,6 @@ class ReservationsService extends AbstractReservationsService
             ->orWhere('golfer2', UserHelper::me()->id)
             ->orWhere('golfer3', UserHelper::me()->id)
             ->orWhere('golfer4', UserHelper::me()->id)
-            ->get();
+            ->paginate();
     }
 }
