@@ -44,6 +44,10 @@ class TeeTimes extends Model
     protected $fillable = [
             'tee_time',
             'features',
+        'golfer1',
+        'golfer2',
+        'golfer3',
+        'golfer4',
             'golf_club_id',
             'golf_course_id',
     ];

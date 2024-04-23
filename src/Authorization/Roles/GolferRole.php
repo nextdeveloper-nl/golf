@@ -32,7 +32,8 @@ class GolferRole extends AbstractRole implements IAuthorizationRole
     {
         if(
             $model->getTable() == 'golf_clubs' ||
-            $model->getTable() == 'golf_courses'
+            $model->getTable() == 'golf_courses' ||
+            $model->getTable() == 'golf_tee_times'
         ) {
             $builder->where([
                 'iam_account_id'    =>  UserHelper::currentAccount()->id,
