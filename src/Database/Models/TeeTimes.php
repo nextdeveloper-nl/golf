@@ -24,6 +24,10 @@ use NextDeveloper\Commons\Database\Traits\Taggable;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property \Carbon\Carbon $deleted_at
+ * @property integer $golfer1
+ * @property integer $golfer2
+ * @property integer $golfer3
+ * @property integer $golfer4
  */
 class TeeTimes extends Model
 {
@@ -44,12 +48,12 @@ class TeeTimes extends Model
     protected $fillable = [
             'tee_time',
             'features',
-        'golfer1',
-        'golfer2',
-        'golfer3',
-        'golfer4',
             'golf_club_id',
             'golf_course_id',
+            'golfer1',
+            'golfer2',
+            'golfer3',
+            'golfer4',
     ];
 
     /**
@@ -80,6 +84,10 @@ class TeeTimes extends Model
     'created_at' => 'datetime',
     'updated_at' => 'datetime',
     'deleted_at' => 'datetime',
+    'golfer1' => 'integer',
+    'golfer2' => 'integer',
+    'golfer3' => 'integer',
+    'golfer4' => 'integer',
     ];
 
     /**
@@ -142,6 +150,7 @@ class TeeTimes extends Model
     }
 
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n\n\n\n\n\n\n
+
 
 
 

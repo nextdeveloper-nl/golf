@@ -58,6 +58,10 @@ trait GolfTeeTimeTestTraits
         $response = $this->http->request(
             'POST', '/golf/golfteetime', [
             'form_params'   =>  [
+                'golfer1'  =>  '1',
+                'golfer2'  =>  '1',
+                'golfer3'  =>  '1',
+                'golfer4'  =>  '1',
                     'tee_time'  =>  now(),
                             ],
                 ['http_errors' => false]
@@ -334,6 +338,82 @@ trait GolfTeeTimeTestTraits
             $model = \NextDeveloper\Golf\Database\Models\GolfTeeTime::first();
 
             event(new \NextDeveloper\Golf\Events\GolfTeeTime\GolfTeeTimeRestoredEvent($model));
+        } catch (\Exception $e) {
+            $this->assertFalse(false, $e->getMessage());
+        }
+
+        $this->assertTrue(true);
+    }
+
+    public function test_golfteetime_event_golfer1_filter()
+    {
+        try {
+            $request = new Request(
+                [
+                'golfer1'  =>  '1'
+                ]
+            );
+
+            $filter = new GolfTeeTimeQueryFilter($request);
+
+            $model = \NextDeveloper\Golf\Database\Models\GolfTeeTime::filter($filter)->first();
+        } catch (\Exception $e) {
+            $this->assertFalse(false, $e->getMessage());
+        }
+
+        $this->assertTrue(true);
+    }
+
+    public function test_golfteetime_event_golfer2_filter()
+    {
+        try {
+            $request = new Request(
+                [
+                'golfer2'  =>  '1'
+                ]
+            );
+
+            $filter = new GolfTeeTimeQueryFilter($request);
+
+            $model = \NextDeveloper\Golf\Database\Models\GolfTeeTime::filter($filter)->first();
+        } catch (\Exception $e) {
+            $this->assertFalse(false, $e->getMessage());
+        }
+
+        $this->assertTrue(true);
+    }
+
+    public function test_golfteetime_event_golfer3_filter()
+    {
+        try {
+            $request = new Request(
+                [
+                'golfer3'  =>  '1'
+                ]
+            );
+
+            $filter = new GolfTeeTimeQueryFilter($request);
+
+            $model = \NextDeveloper\Golf\Database\Models\GolfTeeTime::filter($filter)->first();
+        } catch (\Exception $e) {
+            $this->assertFalse(false, $e->getMessage());
+        }
+
+        $this->assertTrue(true);
+    }
+
+    public function test_golfteetime_event_golfer4_filter()
+    {
+        try {
+            $request = new Request(
+                [
+                'golfer4'  =>  '1'
+                ]
+            );
+
+            $filter = new GolfTeeTimeQueryFilter($request);
+
+            $model = \NextDeveloper\Golf\Database\Models\GolfTeeTime::filter($filter)->first();
         } catch (\Exception $e) {
             $this->assertFalse(false, $e->getMessage());
         }
