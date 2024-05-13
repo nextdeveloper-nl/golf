@@ -18,6 +18,58 @@ class TeeTimesQueryFilter extends AbstractQueryFilter
      */
     protected $builder;
 
+    public function golfer1($value)
+    {
+        $operator = substr($value, 0, 1);
+
+        if ($operator != '<' || $operator != '>') {
+            $operator = '=';
+        } else {
+            $value = substr($value, 1);
+        }
+
+        return $this->builder->where('golfer1', $operator, $value);
+    }
+
+    public function golfer2($value)
+    {
+        $operator = substr($value, 0, 1);
+
+        if ($operator != '<' || $operator != '>') {
+            $operator = '=';
+        } else {
+            $value = substr($value, 1);
+        }
+
+        return $this->builder->where('golfer2', $operator, $value);
+    }
+
+    public function golfer3($value)
+    {
+        $operator = substr($value, 0, 1);
+
+        if ($operator != '<' || $operator != '>') {
+            $operator = '=';
+        } else {
+            $value = substr($value, 1);
+        }
+
+        return $this->builder->where('golfer3', $operator, $value);
+    }
+
+    public function golfer4($value)
+    {
+        $operator = substr($value, 0, 1);
+
+        if ($operator != '<' || $operator != '>') {
+            $operator = '=';
+        } else {
+            $value = substr($value, 1);
+        }
+
+        return $this->builder->where('golfer4', $operator, $value);
+    }
+
     public function teeTimeStart($date)
     {
         return $this->builder->where('tee_time', '>=', $date);
@@ -77,4 +129,5 @@ class TeeTimesQueryFilter extends AbstractQueryFilter
     }
 
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n\n\n
+
 }
