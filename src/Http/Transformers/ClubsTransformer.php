@@ -38,6 +38,6 @@ class ClubsTransformer extends AbstractClubsTransformer
             $transformed
         );
 
-        return parent::transform($model);
+        return $transformed;
     }
 }

@@ -115,7 +115,7 @@ class GolfServiceProvider extends AbstractServiceProvider
      */
     protected function registerRoutes()
     {
-        if (! $this->app->routesAreCached()) {
+        if ( ! $this->app->routesAreCached() && config('leo.allowed_routes.golf', true) ) {
             $this->app['router']
                 ->namespace('NextDeveloper\Golf\Http\Controllers')
                 ->group(__DIR__.DIRECTORY_SEPARATOR.'Http'.DIRECTORY_SEPARATOR.'api.routes.php');

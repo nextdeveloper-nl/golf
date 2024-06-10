@@ -38,6 +38,6 @@ class TeeTimesTransformer extends AbstractTeeTimesTransformer
             $transformed
         );
 
-        return parent::transform($model);
+        return $transformed;
     }
 }
