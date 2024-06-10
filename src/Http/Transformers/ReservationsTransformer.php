@@ -38,6 +38,6 @@ class ReservationsTransformer extends AbstractReservationsTransformer
             $transformed
         );
 
-        return parent::transform($model);
+        return $transformed;
     }
 }

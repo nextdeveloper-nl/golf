@@ -38,6 +38,6 @@ class CoursesTransformer extends AbstractCoursesTransformer
             $transformed
         );
 
-        return parent::transform($model);
+        return $transformed;
     }
 }
