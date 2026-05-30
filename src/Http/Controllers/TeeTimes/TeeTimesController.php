@@ -3,14 +3,15 @@
 namespace NextDeveloper\Golf\Http\Controllers\TeeTimes;
 
 use Illuminate\Http\Request;
-use NextDeveloper\Golf\Http\Controllers\AbstractController;
 use NextDeveloper\Commons\Http\Response\ResponsableFactory;
-use NextDeveloper\Golf\Http\Requests\TeeTimes\TeeTimesUpdateRequest;
+use NextDeveloper\Commons\Http\Traits\Tags;
 use NextDeveloper\Golf\Database\Filters\TeeTimesQueryFilter;
 use NextDeveloper\Golf\Database\Models\TeeTimes;
-use NextDeveloper\Golf\Services\TeeTimesService;
+use NextDeveloper\Golf\Http\Controllers\AbstractController;
 use NextDeveloper\Golf\Http\Requests\TeeTimes\TeeTimesCreateRequest;
-use NextDeveloper\Commons\Http\Traits\Tags;
+use NextDeveloper\Golf\Http\Requests\TeeTimes\TeeTimesUpdateRequest;
+use NextDeveloper\Golf\Services\TeeTimesService;
+
 class TeeTimesController extends AbstractController
 {
     private $model = TeeTimes::class;

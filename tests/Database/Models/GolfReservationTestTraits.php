@@ -2,14 +2,13 @@
 
 namespace NextDeveloper\Golf\Tests\Database\Models;
 
-use Tests\TestCase;
 use GuzzleHttp\Client;
-use Illuminate\Http\Response;
 use Illuminate\Http\Request;
-use NextDeveloper\Golf\Database\Filters\GolfReservationQueryFilter;
-use NextDeveloper\Golf\Services\AbstractServices\AbstractGolfReservationService;
+use Illuminate\Http\Response;
 use Illuminate\Pagination\LengthAwarePaginator;
 use League\Fractal\Resource\Collection;
+use NextDeveloper\Golf\Database\Filters\GolfReservationQueryFilter;
+use NextDeveloper\Golf\Services\AbstractServices\AbstractGolfReservationService;
 
 trait GolfReservationTestTraits
 {

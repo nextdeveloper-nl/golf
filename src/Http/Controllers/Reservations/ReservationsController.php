@@ -3,14 +3,15 @@
 namespace NextDeveloper\Golf\Http\Controllers\Reservations;
 
 use Illuminate\Http\Request;
-use NextDeveloper\Golf\Http\Controllers\AbstractController;
 use NextDeveloper\Commons\Http\Response\ResponsableFactory;
-use NextDeveloper\Golf\Http\Requests\Reservations\ReservationsUpdateRequest;
+use NextDeveloper\Commons\Http\Traits\Tags;
 use NextDeveloper\Golf\Database\Filters\ReservationsQueryFilter;
 use NextDeveloper\Golf\Database\Models\Reservations;
-use NextDeveloper\Golf\Services\ReservationsService;
+use NextDeveloper\Golf\Http\Controllers\AbstractController;
 use NextDeveloper\Golf\Http\Requests\Reservations\ReservationsCreateRequest;
-use NextDeveloper\Commons\Http\Traits\Tags;
+use NextDeveloper\Golf\Http\Requests\Reservations\ReservationsUpdateRequest;
+use NextDeveloper\Golf\Services\ReservationsService;
+
 class ReservationsController extends AbstractController
 {
     private $model = Reservations::class;

@@ -2,14 +2,14 @@
 
 namespace NextDeveloper\Golf\Database\Models;
 
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
-use NextDeveloper\Commons\Database\Traits\Filterable;
-use NextDeveloper\Golf\Database\Observers\CoursesObserver;
-use NextDeveloper\Commons\Database\Traits\UuidId;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use NextDeveloper\Commons\Common\Cache\Traits\CleanCache;
+use NextDeveloper\Commons\Database\Traits\Filterable;
+use NextDeveloper\Commons\Database\Traits\HasStates;
 use NextDeveloper\Commons\Database\Traits\Taggable;
+use NextDeveloper\Commons\Database\Traits\UuidId;
+use NextDeveloper\Golf\Database\Observers\CoursesObserver;
 
 /**
  * Courses model.
@@ -29,7 +29,7 @@ use NextDeveloper\Commons\Database\Traits\Taggable;
  */
 class Courses extends Model
 {
-    use Filterable, UuidId, CleanCache, Taggable;
+    use Filterable, UuidId, CleanCache, Taggable, HasStates;
     use SoftDeletes;
 
 

@@ -2,8 +2,8 @@
 
 namespace NextDeveloper\Golf\EventHandlers\CoursesCreatingEvent;
 
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
 
 /**
  * Class CoursesCreatingEvent

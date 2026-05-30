@@ -3,14 +3,15 @@
 namespace NextDeveloper\Golf\Http\Controllers\Clubs;
 
 use Illuminate\Http\Request;
-use NextDeveloper\Golf\Http\Controllers\AbstractController;
 use NextDeveloper\Commons\Http\Response\ResponsableFactory;
-use NextDeveloper\Golf\Http\Requests\Clubs\ClubsUpdateRequest;
+use NextDeveloper\Commons\Http\Traits\Tags;
 use NextDeveloper\Golf\Database\Filters\ClubsQueryFilter;
 use NextDeveloper\Golf\Database\Models\Clubs;
-use NextDeveloper\Golf\Services\ClubsService;
+use NextDeveloper\Golf\Http\Controllers\AbstractController;
 use NextDeveloper\Golf\Http\Requests\Clubs\ClubsCreateRequest;
-use NextDeveloper\Commons\Http\Traits\Tags;
+use NextDeveloper\Golf\Http\Requests\Clubs\ClubsUpdateRequest;
+use NextDeveloper\Golf\Services\ClubsService;
+
 class ClubsController extends AbstractController
 {
     private $model = Clubs::class;

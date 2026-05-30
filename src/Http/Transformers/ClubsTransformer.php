@@ -5,7 +5,6 @@ namespace NextDeveloper\Golf\Http\Transformers;
 use Illuminate\Support\Facades\Cache;
 use NextDeveloper\Commons\Common\Cache\CacheHelper;
 use NextDeveloper\Golf\Database\Models\Clubs;
-use NextDeveloper\Commons\Http\Transformers\AbstractTransformer;
 use NextDeveloper\Golf\Http\Transformers\AbstractTransformers\AbstractClubsTransformer;
 
 /**
@@ -32,6 +31,10 @@ class ClubsTransformer extends AbstractClubsTransformer
         }
 
         $transformed = parent::transform($model);
+
+        /**
+         * ................
+         */
 
         Cache::set(
             CacheHelper::getKey('Clubs', $model->uuid, 'Transformed'),

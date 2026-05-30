@@ -2,8 +2,6 @@
 
 namespace NextDeveloper\Golf;
 
-use GuzzleHttp\Client as GuzzleClient;
-use Illuminate\Support\Facades\Log;
 use NextDeveloper\Commons\AbstractServiceProvider;
 
 /**
@@ -36,7 +34,6 @@ class GolfServiceProvider extends AbstractServiceProvider
         //        $this->bootErrorHandler();
         $this->bootChannelRoutes();
         $this->bootModelBindings();
-        $this->bootEvents();
         $this->bootLogger();
     }
 
@@ -87,24 +84,6 @@ class GolfServiceProvider extends AbstractServiceProvider
     {
         if (file_exists(($file = $this->dir.'/../config/channel.routes.php'))) {
             include_once $file;
-        }
-    }
-
-    /**
-     * @return void
-     */
-    protected function bootEvents()
-    {
-        $configs = config()->all();
-
-        foreach ($configs as $key => $value) {
-            if (config()->has($key.'.events')) {
-                foreach (config($key.'.events') as $event => $handlers) {
-                    foreach ($handlers as $handler) {
-                        $this->app['events']->listen($event, $handler);
-                    }
-                }
-            }
         }
     }
 

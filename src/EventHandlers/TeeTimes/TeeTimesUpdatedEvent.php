@@ -2,8 +2,8 @@
 
 namespace NextDeveloper\Golf\EventHandlers\TeeTimesUpdatedEvent;
 
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
 
 /**
  * Class TeeTimesUpdatedEvent

@@ -5,7 +5,6 @@ namespace NextDeveloper\Golf\Http\Transformers;
 use Illuminate\Support\Facades\Cache;
 use NextDeveloper\Commons\Common\Cache\CacheHelper;
 use NextDeveloper\Golf\Database\Models\TeeTimes;
-use NextDeveloper\Commons\Http\Transformers\AbstractTransformer;
 use NextDeveloper\Golf\Http\Transformers\AbstractTransformers\AbstractTeeTimesTransformer;
 
 /**

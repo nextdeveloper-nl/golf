@@ -3,14 +3,15 @@
 namespace NextDeveloper\Golf\Http\Controllers\Courses;
 
 use Illuminate\Http\Request;
-use NextDeveloper\Golf\Http\Controllers\AbstractController;
 use NextDeveloper\Commons\Http\Response\ResponsableFactory;
-use NextDeveloper\Golf\Http\Requests\Courses\CoursesUpdateRequest;
+use NextDeveloper\Commons\Http\Traits\Tags;
 use NextDeveloper\Golf\Database\Filters\CoursesQueryFilter;
 use NextDeveloper\Golf\Database\Models\Courses;
-use NextDeveloper\Golf\Services\CoursesService;
+use NextDeveloper\Golf\Http\Controllers\AbstractController;
 use NextDeveloper\Golf\Http\Requests\Courses\CoursesCreateRequest;
-use NextDeveloper\Commons\Http\Traits\Tags;
+use NextDeveloper\Golf\Http\Requests\Courses\CoursesUpdateRequest;
+use NextDeveloper\Golf\Services\CoursesService;
+
 class CoursesController extends AbstractController
 {
     private $model = Courses::class;

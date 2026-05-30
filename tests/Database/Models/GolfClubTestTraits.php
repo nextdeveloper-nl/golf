@@ -2,14 +2,13 @@
 
 namespace NextDeveloper\Golf\Tests\Database\Models;
 
-use Tests\TestCase;
 use GuzzleHttp\Client;
-use Illuminate\Http\Response;
 use Illuminate\Http\Request;
-use NextDeveloper\Golf\Database\Filters\GolfClubQueryFilter;
-use NextDeveloper\Golf\Services\AbstractServices\AbstractGolfClubService;
+use Illuminate\Http\Response;
 use Illuminate\Pagination\LengthAwarePaginator;
 use League\Fractal\Resource\Collection;
+use NextDeveloper\Golf\Database\Filters\GolfClubQueryFilter;
+use NextDeveloper\Golf\Services\AbstractServices\AbstractGolfClubService;
 
 trait GolfClubTestTraits
 {
