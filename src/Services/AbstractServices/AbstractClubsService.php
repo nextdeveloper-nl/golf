@@ -21,7 +21,7 @@ use NextDeveloper\IAM\Helpers\UserHelper;
  */
 class AbstractClubsService
 {
-    public static function get(ClubsQueryFilter $filter = null, array $params = []) : Collection|LengthAwarePaginator
+    public static function get(?ClubsQueryFilter $filter = null, array $params = []) : Collection|LengthAwarePaginator
     {
         $enablePaginate = array_key_exists('paginate', $params);
 

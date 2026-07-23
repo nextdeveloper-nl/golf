@@ -24,7 +24,7 @@ class ClubsCreatedEvent
      */
     protected $timestamp = null;
 
-    public function __construct(Clubs $model = null)
+    public function __construct(?Clubs $model = null)
     {
         $this->_model = $model;
     }

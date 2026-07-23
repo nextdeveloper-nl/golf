@@ -24,7 +24,7 @@ class TeeTimesCreatingEvent
      */
     protected $timestamp = null;
 
-    public function __construct(TeeTimes $model = null)
+    public function __construct(?TeeTimes $model = null)
     {
         $this->_model = $model;
     }

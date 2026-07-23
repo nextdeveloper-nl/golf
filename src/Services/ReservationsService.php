@@ -20,7 +20,7 @@ class ReservationsService extends AbstractReservationsService
 
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE
 
-    public static function get(ReservationsQueryFilter $filter = null, array $params = []) : \Illuminate\Contracts\Pagination\LengthAwarePaginator|\Illuminate\Database\Eloquent\Collection
+    public static function get(?ReservationsQueryFilter $filter = null, array $params = []) : \Illuminate\Contracts\Pagination\LengthAwarePaginator|\Illuminate\Database\Eloquent\Collection
     {
         return TeeTimes::withoutGlobalScope(AuthorizationScope::class)
             ->where('golfer1', UserHelper::me()->id)

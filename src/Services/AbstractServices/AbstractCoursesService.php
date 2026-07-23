@@ -21,7 +21,7 @@ use NextDeveloper\IAM\Helpers\UserHelper;
  */
 class AbstractCoursesService
 {
-    public static function get(CoursesQueryFilter $filter = null, array $params = []) : Collection|LengthAwarePaginator
+    public static function get(?CoursesQueryFilter $filter = null, array $params = []) : Collection|LengthAwarePaginator
     {
         $enablePaginate = array_key_exists('paginate', $params);
 
